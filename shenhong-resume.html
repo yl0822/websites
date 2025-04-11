@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申弘个人简历 - Wozber风格</title>
+    <style>
+        :root {
+            --primary-color: #00C853;
+            --background-color: #FFFFFF;
+            --card-background: #FFFFFF;
+            --text-color: #000000;
+            --secondary-text: #555555;
+            --navbar-color: #1A1A1A;
+            --border-radius: 8px;
+            --progress-bar-bg: #EEEEEE;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #F5F5F5;
+            line-height: 1.6;
+        }
+        
+        /* 顶部导航栏 */
+        .top-navbar {
+            display: flex;
+            align-items: center;
+            background-color: var(--navbar-color);
+            padding: 8px 16px;
+            color: white;
+        }
+        
+        .nav-controls {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .nav-dot.red { background-color: #FF5F56; }
+        .nav-dot.yellow { background-color: #FFBD2E; }
+        .nav-dot.green { background-color: #27C93F; }
+        
+        .address-bar {
+            margin: 0 auto;
+            background-color: #444;
+            border-radius: 4px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 副导航栏 */
+        .sub-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            border-bottom: 1px solid #EEEEEE;
+            background-color: var(--background-color);
+        }
+        
+        .optimization-indicator {
+            background-color: rgba(0, 200, 83, 0.1);
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-weight: 500;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .resume-container {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            border: 1px solid #EEEEEE;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .resume-header {
+            display: flex;
+            padding: 30px;
+            border-bottom: 1px solid #EEEEEE;
+            background-color: var(--background-color);
+        }
+        
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 30px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .basic-info {
+            flex-grow: 1;
+        }
+        
+        .name-title {
+            margin-bottom: 15px;
+        }
+        
+        .name-title h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .resume-section {
+            padding: 30px;
+            border-bottom: 1px solid #EEEEEE;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .section-title-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background-color: #EEEEEE;
+            margin-left: 15px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .experience-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .experience-date {
+            color: var(--secondary-text);
+        }
+        
+        .experience-company {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .experience-description {
+            color: var(--secondary-text);
+        }
+        
+        .publication-item {
+            margin-bottom: 15px;
+        }
+        
+        .skill-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: var(--progress-bar-bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary-text);
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .resume-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .profile-photo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-navbar">
+        <div class="nav-controls">
+            <span class="nav-dot red"></span>
+            <span class="nav-dot yellow"></span>
+            <span class="nav-dot green"></span>
+        </div>
+        <div class="address-bar">
+            <span>个人简历 - 申弘</span>
+        </div>
+    </nav>
+    
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <div class="resume-container">
+            <!-- 个人信息 -->
+            <div class="resume-header">
+                <div class="profile-photo">
+                    <img src="https://qhstaticssl.kujiale.com/image/png/1744355550656/76A71E3F404E90E19507F40800772CFA.png" />
+	</div>
+                <div class="basic-info">
+                    <div class="name-title">
+                        <h1>申弘</h1>
+                        <div>生物医药博士 | 中医内科专家</div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">性别:</span>
+                            <span>男</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">年龄:</span>
+                            <span>36</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">电话:</span>
+                            <span>15014938232</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">邮箱:</span>
+                            <span>tzky2012@163.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">现所在地:</span>
+                            <span>广州/珠海</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">政治面貌:</span>
+                            <span>中共党员</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">民族:</span>
+                            <span>汉族</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">身高:</span>
+                            <span>177cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 教育经历 -->
+            <div class="resume-section">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0.198l8 4v7.6c0 0.331-0.169 0.64-0.45 0.819-2.894 1.851-5.826 2.831-8.55 2.831-2.724 0-5.656-0.98-8.55-2.831-0.281-0.18-0.45-0.488-0.45-0.819v-7.6l8-4zM8 1.398l-7 3.5v6.872c2.669 1.695 5.372 2.603 7 2.603s4.331-0.908 7-2.603v-6.872l-7-3.5zM8 11.773c-1.86 0-3.5-0.76-3.5-2.6v-3.9l3.5-1.75 3.5 1.75v3.9c0 1.84-1.64 2.6-3.5 2.6zM8 4.323l-2.5 1.25v3.6c0 0.969 1.019 1.6 2.5 1.6s2.5-0.631 2.5-1.6v-3.6l-2.5-1.25z"/>
+                        </svg>
+                    </div>
+                    <h2>教育经历</h2>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">生物医药 | 博士（PHD）</div>
+                        <div class="experience-date">2019.09-至今</div>
+                    </div>
+                    <div class="experience-company">澳门大学 中华医药研究院（中药质量研究国家重点实验室）</div>
+                    <div class="experience-description">
+                        全日制就读于澳门大学中华医药研究院，从事中药人参、三七等中药提取物防治酒精性肝病、非酒精性脂肪性肝病、肝缺血再灌注损伤的作用机制研究。导师：万建波教授。
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">中医内科学（中医肝病） | 硕士（专业学位）</div>
+                        <div class="experience-date">2012.09-2015.07</div>
+                    </div>
+                    <div class="experience-company">上海中医药大学</div>
+                    <div class="experience-description">
+                        师从全国著名中西医结合肝病专家陈建杰教授，于上海中医药大学附属曙光医院肝病科（国家区域中医诊疗中心），系统学习中西医结合防治慢性肝病的理论知识和临床诊疗技能。
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">中医学 | 本科</div>
+                        <div class="experience-date">2007.09-2012.07</div>
+                    </div>
+                    <div class="experience-company">河北医科大学</div>
+                    <div class="experience-description">
+                        就读于中医学院，系统学习中医药基础理论知识和临床诊疗经验。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 工作经历 -->
+            <div class="resume-section">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                            <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
+                        </svg>
+                    </div>
+                    <h2>工作经历</h2>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">主治中医师 | 中医内科（中医肝病）</div>
+                        <div class="experience-date">2018.06-2019.08</div>
+                    </div>
+                    <div class="experience-company">广东省中医院珠海医院</div>
+                    <div class="experience-description">
+                        <p>· 临床工作：承担肝病科普通专科门诊诊疗工作（每周4次）及住院患者的日常诊疗工作，积累了各种急、慢性肝病的临床诊疗经验。</p>
+                        <p>· 慢性病管理: 参与常见慢性肝病（乙肝）疾病管理计划，提高慢性肝病规范化诊疗效率和患者满意度。</p>
+                        <p>· 科研项目: 负责科室科研项目申报、实施等管理工作，提升科室科研能力和水平。</p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">中医师 | 中医内科(中医肝病)</div>
+                        <div class="experience-date">2015.09-2018.05</div>
+                    </div>
+                    <div class="experience-company">广东省中医院珠海医院</div>
+                    <div class="experience-description">
+                        承担住院医师职责，协助上级医师，负责病房患者的日常收治及诊治工作，熟练掌握常见肝病的诊疗指南和临床技能；积极参加各种继续教育项目；完成中医专科住院医师规范化培训。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目经历 -->
+            <div class="resume-section">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 1.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 13a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM9 7a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM0 7a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </div>
+                    <h2>项目经历</h2>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">博士研究生</div>
+                        <div class="experience-date">2019.09-至今</div>
+                    </div>
+                    <div class="experience-company">澳门大学-武汉大学</div>
+                    <div class="experience-description">
+                        <p><strong>研究经历：</strong>在澳门大学中华医药研究院（国家中药质量控制实验室），开展了人参及三七提取物干预酒精性脂肪性肝炎的作用及机制研究；与武汉大学模式动物研究所和新药创制全国重点实验室（赣州）合作，学习并开展人参及三七提取物干预非酒精性脂肪性肝炎及肝缺血再灌注损伤的作用机制研究。</p>
+                        <p><strong>科研技能：</strong>独立开展细胞培养，质粒构建、慢病毒及腺病毒包装，KO细胞系构建，流式细胞术、共聚焦显微镜摄片，病理实验（HE，PSR，TUNEL, IHC, IF, ICC）, 等温滴定微量热仪操作，Western bolts，QPCR等生物实验技能；网络药理学分析；热蛋白组学及转录组学实验数据分析；临床数据统计分析。</p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">兼职科研秘书</div>
+                        <div class="experience-date">2016.03-2019.08</div>
+                    </div>
+                    <div class="experience-company">广东省中医院珠海医院</div>
+                    <div class="experience-description">
+                        负责肝病科优势病种的相关科研项目管理，申报并获批珠海市科技局和广东省中医药管理局（面上项目）科研项目，主要研究中医药调节肠道菌群干预乙肝肝硬化及其并发症的临床疗效及其作用机制。
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">访问学者</div>
+                        <div class="experience-date">2016.03-2017.02</div>
+                    </div>
+                    <div class="experience-company">美国东北俄亥俄医科大学</div>
+                    <div class="experience-description">
+                        参与国家自然科学基金项目"丹参对白藜芦醇调节酒精性脂肪肝SIRT1信号通路作用的影响"的具体实验工作。
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">硕士研究生</div>
+                        <div class="experience-date">2012.09-2015.07</div>
+                    </div>
+                    <div class="experience-company">上海中医药大学附属曙光医院</div>
+                    <div class="experience-description">
+                        参与十二五国家科技重大专项"难治性慢性丙型肝炎的中医药治疗方案优化研究"，国家中医药管理局重点学科(中医传染病学)建设及陈建杰上海市名中医工作室的建设项目等多项临床研究；研究方向：中西医结合干预对乙型肝炎肝硬化终点结局的影响。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 科研成果及获奖 -->
+            <div class="resume-section">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817 2.194-6.828 2.929-.003-5.123 6.831z"/>
+                        </svg>
+                    </div>
+                    <h2>科研成果及获奖</h2>
+                </div>
+                
+                <h3 style="margin-bottom: 15px;">学术论文</h3>
+                <div class="publication-list">
+                    <div class="publication-item">
+                        <p>1. Integrated screening identifies GPR31 as a key driver and druggable target for nonalcoholic steatohepatitis. Journal of Clinical Investigation (并列第一). IF 13.3 格式回修，预计2025年5-6月见刊.</p>
+                    </div>
+                    <div class="publication-item">
+                        <p>2. Ginsenoside Rk2 alleviates hepatic ischemia/reperfusion injury by enhancing AKT membrane translocation and activation. Medcomm 第一. IF 10.7 //dx.doi.org/10.1002/mco2.70047.</p>
+                    </div>
+                    <div class="publication-item">
+                        <p>3. Accurate quantification of endogenous N-acylethanolamides by chemical isotope labeling coupled with liquid chromatography-tandem mass spectrometry. Anal Chim Acta. 2021;1179:338839.</p>
+                    </div>
+                    <div class="publication-item">
+                        <p>4. 申弘,胡萌,魏泽辉,等.胆汁的生成、分泌、排泄及胆汁淤积发生机制[J].临床肝胆病杂志,2019,35(02):431-437.</p>
+                    </div>
+                    <div class="publication-item">
+                        <p>5. 申弘,凌琪华,陈逸云,等.中医辨证联合抗病毒治疗对乙型肝炎肝硬化发生率的影响[J].时珍国医国药,2016,27(02):379-383.</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 20px 0 15px;">获奖情况</h3>
+                <div class="award-item">
+                    <p>Basic Science Young Investigator Travel Award. AASLD（美国肝病学会）. 2017-10-01</p>
+                </div>
+            </div>
+            
+            <!-- 自我评价 -->
+            <div class="resume-section">
+                <div class="section-title">
+                    <div class="section-title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                        </svg>
+                    </div>
+                    <h2>自我评价</h2>
+                </div>
+                
+                <div class="evaluation-content">
+                    <p>1. 拥有丰富的中医临床内科医生工作经验，曾在国内中医肝病专科知名医院学习及工作，具备扎实的肝病专科诊疗能力。</p>
+                    <p>2. 参加多项临床和基础科研项目，系统学习并掌握临床及基础科研的多项技能，拥有较高的科研能力和水平。</p>
+                    <p>3. 个人品质上，具有高度的责任心和敬业精神，团队意识强，善于整合资源并引导团队提升专业水平，同时有较高的学习能力和适应能力。</p>
+                </div>
+            </div>
+            
+
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 申弘 个人简历 - 基于Wozber简历优化平台设计</p>
+        </div>
+    </div>
+</body>
+</html>
