@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能助手工具集</title>
+    <style>
+        :root {
+            --primary-color: #4A6FFF;
+            --secondary-color: #F5F7FF;
+            --accent-color: #FF6B6B;
+            --text-color: #333;
+            --light-text: #666;
+            --white: #FFF;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #F8F9FA;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .features {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            width: 30%;
+            min-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .card p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .card-button:hover {
+            background-color: #3858d6;
+        }
+        
+        .how-it-works {
+            background-color: var(--secondary-color);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            width: 30%;
+            min-width: 250px;
+            margin: 1rem auto;
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .cta {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+        }
+        
+        footer {
+            background-color: #2B3445;
+            color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-column {
+            width: 30%;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #B4B7BD;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            margin-top: 2rem;
+            color: #B4B7BD;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .cancel-button {
+            background-color: #f0f0f0;
+            color: var(--text-color);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .submit-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Result modal styles */
+        .result-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .card, .step, .footer-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">智能助手</div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">功能介绍</a></li>
+                        <li><a href="#how-it-works">使用流程</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>智能助手工具集</h1>
+            <p>为您提供高效便捷的工具，一站式解决简历制作、旅游攻略、内容分析等需求</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">功能介绍</h2>
+            <div class="cards-container">
+                <div class="card" id="resume-card">
+                    <div class="card-icon">📄</div>
+                    <h3>简历制作</h3>
+                    <p>轻松创建专业简历，突出个人优势，提升求职竞争力。只需填写基本信息，系统自动生成精美简历。</p>
+                    <button class="card-button">开始制作</button>
+                </div>
+                <div class="card" id="travel-card">
+                    <div class="card-icon">🏝️</div>
+                    <h3>旅游攻略</h3>
+                    <p>根据您的时间、地点、预算和特殊要求，智能生成个性化旅游攻略，让您的旅行更加便捷和愉快。</p>
+                    <button class="card-button">获取攻略</button>
+                </div>
+                <div class="card" id="analysis-card">
+                    <div class="card-icon">📊</div>
+                    <h3>内容分析</h3>
+                    <p>分析长文本或网站内容，提取关键信息，生成摘要报告，帮助您快速了解核心内容和重点。</p>
+                    <button class="card-button">开始分析</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">使用流程</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>选择功能</h3>
+                    <p>根据您的需求，点击相应的功能卡片，进入信息输入界面。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>填写信息</h3>
+                    <p>按照提示填写所需信息，系统将自动处理您的请求。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>获取结果</h3>
+                    <p>系统完成处理后，您可以预览结果，满意后可以保存或分享。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>开始体验智能助手</h2>
+            <button class="cta-button">立即开始</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>智能助手</h4>
+                    <p>为您提供高效便捷的工具，一站式解决简历制作、旅游攻略、内容分析等需求。</p>
+                </div>
+                <div class="footer-column">
+                    <h4>功能</h4>
+                    <ul>
+                        <li><a href="#" id="footer-resume">简历制作</a></li>
+                        <li><a href="#" id="footer-travel">旅游攻略</a></li>
+                        <li><a href="#" id="footer-analysis">内容分析</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="mailto:info@example.com">info@example.com</a></li>
+                        <li><a href="tel:+1234567890">+123 456 7890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 智能助手. 保留所有权利.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div class="modal" id="resume-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-resume-modal">&times;</span>
+            <h2>简历制作</h2>
+            <form id="resume-form">
+                <h3>个人信息</h3>
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" placeholder="例如：张三" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" class="form-control" placeholder="例如：example@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">电话</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="例如：13800138000" required>
+                </div>
+                
+                <h3>学历信息</h3>
+                <div class="form-group">
+                    <label for="education">学历</label>
+                    <input type="text" id="education" class="form-control" placeholder="例如：本科/硕士/博士" required>
+                </div>
+                <div class="form-group">
+                    <label for="school">学校</label>
+                    <input type="text" id="school" class="form-control" placeholder="例如：北京大学" required>
+                </div>
+                <div class="form-group">
+                    <label for="major">专业</label>
+                    <input type="text" id="major" class="form-control" placeholder="例如：计算机科学" required>
+                </div>
+                <div class="form-group">
+                    <label for="grad-date">毕业时间</label>
+                    <input type="month" id="grad-date" class="form-control" required>
+                </div>
+                
+                <h3>工作经历</h3>
+                <div class="form-group">
+                    <label for="company">公司名称</label>
+                    <input type="text" id="company" class="form-control" placeholder="例如：科技有限公司" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">职位</label>
+                    <input type="text" id="position" class="form-control" placeholder="例如：前端工程师" required>
+                </div>
+                <div class="form-group">
+                    <label for="work-period">工作时间</label>
+                    <input type="text" id="work-period" class="form-control" placeholder="例如：2020年6月 - 2022年8月" required>
+                </div>
+                <div class="form-group">
+                    <label for="job-description">工作描述</label>
+                    <textarea id="job-description" class="form-control" placeholder="请描述您的工作职责和成就" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resume-ui-reference">UI参考网站 (可选)</label>
+                    <input type="url" id="resume-ui-reference" class="form-control" placeholder="例如：https://example.com">
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="cancel-button" id="cancel-resume">取消</button>
+                    <button type="submit" class="submit-button" id="generate-resume">生成简历</button>
+                </div>
+            </form>
+            
+            <div class="loading" id="resume-loading">
+                <div class="loading-spinner"></div>
+                <p>正在生成您的简历，请稍候...</p>
+            </div>
+            
+            <div class="result-container" id="resume-result" style="display:none;">
+                <h3>您的简历已生成</h3>
+                <iframe id="resume-preview" style="width:100%; height:500px; border:none;"></iframe>
+                <div class="result-actions">
+                    <button class="cancel-button" id="resume-modify">继续修改</button>
+                    <button class="submit-button" id="resume-confirm">我很满意</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Travel Modal -->
+    <div class="modal" id="travel-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-travel-modal">&times;</span>
+            <h2>旅游攻略</h2>
+            <form id="travel-form">
+                <div class="form-group">
+                    <label for="travel-time">旅行时间</label>
+                    <input type="text" id="travel-time" class="form-control" placeholder="例如：2025年5月1日-5月7日" required>
+                </div>
+                <div class="form-group">
+                    <label for="travel-place">目的地</label>
+                    <input type="text" id="travel-place" class="form-control" placeholder="例如：北京、日本、欧洲" required>
+                </div>
+                <div class="form-group">
+                    <label for="travel-budget">预算</label>
+                    <input type="text" id="travel-budget" class="form-control" placeholder="例如：5000元/人" required>
+                </div>
+                <div class="form-group">
+                    <label for="travel-requirements">特殊要求</label>
+                    <textarea id="travel-requirements" class="form-control" placeholder="例如：喜欢历史古迹、美食、购物等"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="travel-ui-reference">UI参考网站 (可选)</label>
+                    <input type="url" id="travel-ui-reference" class="form-control" placeholder="例如：https://example.com">
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="cancel-button" id="cancel-travel">取消</button>
+                    <button type="submit" class="submit-button">生成攻略</button>
+                </div>
+            </form>
+            
+            <div class="loading" id="travel-loading">
+                <div class="loading-spinner"></div>
+                <p>正在生成您的旅游攻略，请稍候...</p>
+            </div>
+            
+            <div class="result-container" id="travel-result" style="display:none;">
+                <h3>您的旅游攻略已生成</h3>
+                <iframe id="travel-preview" style="width:100%; height:500px; border:none;"></iframe>
+                <div class="result-actions">
+                    <button class="cancel-button" id="travel-modify">继续修改</button>
+                    <button class="submit-button" id="travel-confirm">我很满意</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analysis Modal -->
+    <div class="modal" id="analysis-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-analysis-modal">&times;</span>
+            <h2>内容分析</h2>
+            <form id="analysis-form">
+                <div class="form-group">
+                    <label for="analysis-content">请输入长文本或网站地址</label>
+                    <textarea id="analysis-content" class="form-control" rows="10" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="analysis-ui-reference">UI参考网站 (可选)</label>
+                    <input type="url" id="analysis-ui-reference" class="form-control" placeholder="例如：https://example.com">
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="cancel-button" id="cancel-analysis">取消</button>
+                    <button type="submit" class="submit-button">开始分析</button>
+                </div>
+            </form>
+            
+            <div class="loading" id="analysis-loading">
+                <div class="loading-spinner"></div>
+                <p>正在分析内容，请稍候...</p>
+            </div>
+            
+            <div class="result-container" id="analysis-result" style="display:none;">
+                <h3>分析结果</h3>
+                <iframe id="analysis-preview" style="width:100%; height:500px; border:none;"></iframe>
+                <div class="result-actions">
+                    <button class="cancel-button" id="analysis-modify">继续修改</button>
+                    <button class="submit-button" id="analysis-confirm">我很满意</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成');
+            
+            // Show and hide modals
+            document.getElementById('resume-card').addEventListener('click', function() {
+                console.log('点击简历卡片');
+                document.getElementById('resume-modal').style.display = 'block';
+            });
+            
+            document.getElementById('travel-card').addEventListener('click', function() {
+                console.log('点击旅游攻略卡片');
+                document.getElementById('travel-modal').style.display = 'block';
+            });
+            
+            document.getElementById('analysis-card').addEventListener('click', function() {
+                console.log('点击内容分析卡片');
+                document.getElementById('analysis-modal').style.display = 'block';
+            });
+            
+            document.getElementById('footer-resume').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('resume-modal').style.display = 'block';
+            });
+            
+            document.getElementById('footer-travel').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('travel-modal').style.display = 'block';
+            });
+            
+            document.getElementById('footer-analysis').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('analysis-modal').style.display = 'block';
+            });
+            
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                document.getElementById('resume-modal').style.display = 'block';
+            });
+        });
+        
+        // Close modals
+        document.getElementById('close-resume-modal').addEventListener('click', function() {
+            document.getElementById('resume-modal').style.display = 'none';
+            document.getElementById('resume-result').style.display = 'none';
+            document.getElementById('resume-form').style.display = 'block';
+            document.getElementById('resume-loading').style.display = 'none';
+        });
+        
+        document.getElementById('close-travel-modal').addEventListener('click', function() {
+            document.getElementById('travel-modal').style.display = 'none';
+            document.getElementById('travel-result').style.display = 'none';
+            document.getElementById('travel-form').style.display = 'block';
+            document.getElementById('travel-loading').style.display = 'none';
+        });
+        
+        document.getElementById('close-analysis-modal').addEventListener('click', function() {
+            document.getElementById('analysis-modal').style.display = 'none';
+            document.getElementById('analysis-result').style.display = 'none';
+            document.getElementById('analysis-form').style.display = 'block';
+            document.getElementById('analysis-loading').style.display = 'none';
+        });
+        
+        document.getElementById('cancel-resume').addEventListener('click', function() {
+            document.getElementById('resume-modal').style.display = 'none';
+        });
+        
+        document.getElementById('cancel-travel').addEventListener('click', function() {
+            document.getElementById('travel-modal').style.display = 'none';
+        });
+        
+        document.getElementById('cancel-analysis').addEventListener('click', function() {
+            document.getElementById('analysis-modal').style.display = 'none';
+        });
+        
+        // Form submission and result display
+        document.getElementById('resume-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log("简历表单提交");
+            
+            // 隐藏表单，显示加载中状态
+            document.getElementById('resume-form').style.display = 'none';
+            document.getElementById('resume-loading').style.display = 'block';
+            
+            // 获取表单数据
+            const name = document.getElementById('name').value || "张三";
+            const email = document.getElementById('email').value || "zhangsan@example.com";
+            const phone = document.getElementById('phone').value || "13800138000";
+            const education = document.getElementById('education').value || "本科";
+            const school = document.getElementById('school').value || "北京大学";
+            const major = document.getElementById('major').value || "计算机科学";
+            const gradDate = document.getElementById('grad-date').value || "2023-06";
+            const company = document.getElementById('company').value || "科技有限公司";
+            const position = document.getElementById('position').value || "前端工程师";
+            const workPeriod = document.getElementById('work-period').value || "2023年7月 - 至今";
+            const jobDescription = document.getElementById('job-description').value || "负责公司产品的前端开发，使用React、Vue等技术栈，参与产品的设计和开发全流程。";
+            
+            // 定义简历HTML
+            const resumeHTML = `
+            <!DOCTYPE html>
+            <html lang="zh-CN">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${name}的个人简历</title>
+                <style>
+                    body {
+                        font-family: 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        max-width: 800px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }
+                    .header {
+                        text-align: center;
+                        margin-bottom: 30px;
+                        border-bottom: 2px solid #4A6FFF;
+                        padding-bottom: 20px;
+                    }
+                    .name {
+                        font-size: 28px;
+                        font-weight: bold;
+                        color: #4A6FFF;
+                        margin-bottom: 10px;
+                    }
+                    .contact {
+                        font-size: 16px;
+                    }
+                    .section {
+                        margin-bottom: 25px;
+                    }
+                    .section-title {
+                        font-size: 20px;
+                        color: #4A6FFF;
+                        border-bottom: 1px solid #eee;
+                        padding-bottom: 5px;
+                        margin-bottom: 15px;
+                    }
+                    .item {
+                        margin-bottom: 15px;
+                    }
+                    .item-title {
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+                    .item-subtitle {
+                        color: #666;
+                        font-style: italic;
+                        margin-bottom: 5px;
+                    }
+                    .item-date {
+                        color: #888;
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                    }
+                    .item-description {
+                        text-align: justify;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <div class="name">${name}</div>
+                    <div class="contact">
+                        电子邮箱：${email} | 电话：${phone}
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">教育背景</div>
+                    <div class="item">
+                        <div class="item-title">${school}</div>
+                        <div class="item-subtitle">${education} | ${major}</div>
+                        <div class="item-date">毕业时间：${gradDate}</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">工作经历</div>
+                    <div class="item">
+                        <div class="item-title">${company}</div>
+                        <div class="item-subtitle">${position}</div>
+                        <div class="item-date">${workPeriod}</div>
+                        <div class="item-description">${jobDescription}</div>
+                    </div>
+                </div>
+            </body>
+            </html>
+            `;
+            
+            // 延迟两秒模拟处理过程
+            setTimeout(function() {
+                // 隐藏加载中，显示结果
+                document.getElementById('resume-loading').style.display = 'none';
+                document.getElementById('resume-result').style.display = 'block';
+                
+                // 在iframe中显示简历
+                const iframe = document.getElementById('resume-preview');
+                iframe.srcdoc = resumeHTML;
+                
+                // 存储用于之后使用
+                window.resumeHTML = resumeHTML;
+                window.resumeFileName = `${name}_resume.html`;
+                
+                console.log("简历生成完成");
+            }, 2000);
+        });
+        
+        document.getElementById('travel-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('travel-form').style.display = 'none';
+            document.getElementById('travel-loading').style.display = 'block';
+            
+            // Simulate API call delay
+            setTimeout(function() {
+                document.getElementById('travel-loading').style.display = 'none';
+                document.getElementById('travel-result').style.display = 'block';
+                
+                // Create travel HTML and display in iframe
+                const travelTime = document.getElementById('travel-time').value;
+                const travelPlace = document.getElementById('travel-place').value;
+                const travelBudget = document.getElementById('travel-budget').value;
+                const travelRequirements = document.getElementById('travel-requirements').value;
+                
+                const travelHTML = `
+                <!DOCTYPE html>
+                <html lang="zh-CN">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${travelPlace}旅游攻略</title>
+                    <style>
+                        body {
+                            font-family: 'Arial', sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                            max-width: 800px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #f9f9f9;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            background-color: #4A6FFF;
+                            color: white;
+                            padding: 20px;
+                            border-radius: 10px;
+                        }
+                        .title {
+                            font-size: 28px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                        .subtitle {
+                            font-size: 16px;
+                            opacity: 0.9;
+                        }
+                        .info-card {
+                            background-color: white;
+                            border-radius: 10px;
+                            padding: 20px;
+                            margin-bottom: 20px;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        }
+                        .card-title {
+                            font-size: 20px;
+                            color: #4A6FFF;
+                            border-bottom: 1px solid #eee;
+                            padding-bottom: 5px;
+                            margin-bottom: 15px;
+                        }
+                        .info-item {
+                            margin-bottom: 15px;
+                        }
+                        .info-label {
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                        }
+                        .info-content {
+                            text-align: justify;
+                        }
+                        .day-plan {
+                            background-color: white;
+                            border-radius: 10px;
+                            padding: 20px;
+                            margin-bottom: 20px;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        }
+                        .day-title {
+                            font-size: 18px;
+                            color: #4A6FFF;
+                            margin-bottom: 10px;
+                        }
+                        .activity {
+                            margin-bottom: 15px;
+                            padding-left: 20px;
+                            position: relative;
+                        }
+                        .activity:before {
+                            content: "•";
+                            position: absolute;
+                            left: 0;
+                            color: #4A6FFF;
+                        }
+                        .time {
+                            font-weight: bold;
+                        }
+                        .tips {
+                            background-color: #FFF8E1;
+                            border-left: 4px solid #FFC107;
+                            padding: 15px;
+                            margin-top: 30px;
+                            border-radius: 0 10px 10px 0;
+                        }
+                        .tips-title {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="title">${travelPlace}旅游攻略</div>
+                        <div class="subtitle">为您定制的完美旅行计划</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="card-title">基本信息</div>
+                        <div class="info-item">
+                            <div class="info-label">旅行时间</div>
+                            <div class="info-content">${travelTime}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">目的地</div>
+                            <div class="info-content">${travelPlace}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">预算</div>
+                            <div class="info-content">${travelBudget}</div>
+                        </div>
+                        ${travelRequirements ? `
+                        <div class="info-item">
+                            <div class="info-label">特殊要求</div>
+                            <div class="info-content">${travelRequirements}</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="day-plan">
+                        <div class="day-title">第一天行程</div>
+                        <div class="activity">
+                            <span class="time">上午：</span> 参观当地著名景点
+                        </div>
+                        <div class="activity">
+                            <span class="time">中午：</span> 品尝当地特色美食
+                        </div>
+                        <div class="activity">
+                            <span class="time">下午：</span> 休闲购物时光
+                        </div>
+                        <div class="activity">
+                            <span class="time">晚上：</span> 夜景观光
+                        </div>
+                    </div>
+                    
+                    <div class="day-plan">
+                        <div class="day-title">第二天行程</div>
+                        <div class="activity">
+                            <span class="time">上午：</span> 自然风光探索
+                        </div>
+                        <div class="activity">
+                            <span class="time">中午：</span> 当地特色餐厅用餐
+                        </div>
+                        <div class="activity">
+                            <span class="time">下午：</span> 文化体验活动
+                        </div>
+                        <div class="activity">
+                            <span class="time">晚上：</span> 特色表演欣赏
+                        </div>
+                    </div>
+                    
+                    <div class="tips">
+                        <div class="tips-title">旅行小贴士</div>
+                        <p>1. 提前查询天气情况，准备合适的衣物。</p>
+                        <p>2. 重要证件请随身携带并妥善保管。</p>
+                        <p>3. 尊重当地风俗习惯，注意文明旅游。</p>
+                        <p>4. 记得购买旅游保险，以防意外情况。</p>
+                    </div>
+                </body>
+                </html>
+                `;
+                
+                const iframe = document.getElementById('travel-preview');
+                iframe.srcdoc = travelHTML;
+                
+                // Store for later use
+                window.travelHTML = travelHTML;
+                window.travelFileName = `${travelPlace}_travel_guide.html`;
+            }, 2000);
+        });
+        
+        document.getElementById('analysis-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('analysis-form').style.display = 'none';
+            document.getElementById('analysis-loading').style.display = 'block';
+            
+            // Simulate API call delay
+            setTimeout(function() {
+                document.getElementById('analysis-loading').style.display = 'none';
+                document.getElementById('analysis-result').style.display = 'block';
+                
+                // Create analysis HTML and display in iframe
+                const analysisContent = document.getElementById('analysis-content').value;
+                let contentType = "长文本";
+                
+                // Simple check if it's a URL
+                if (analysisContent.startsWith('http')) {
+                    contentType = "网站内容";
+                }
+                
+                const analysisHTML = `
+                <!DOCTYPE html>
+                <html lang="zh-CN">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>内容分析报告</title>
+                    <style>
+                        body {
+                            font-family: 'Arial', sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                            max-width: 800px;
+                            margin: 0 auto;
+                            padding: 20px;
+                        }
+                        .header {
+                            margin-bottom: 30px;
+                            border-bottom: 2px solid #4A6FFF;
+                            padding-bottom: 15px;
+                        }
+                        .title {
+                            font-size: 24px;
+                            font-weight: bold;
+                            color: #4A6FFF;
+                            margin-bottom: 10px;
+                        }
+                        .subtitle {
+                            font-size: 16px;
+                            color: #666;
+                        }
+                        .section {
+                            margin-bottom: 25px;
+                        }
+                        .section-title {
+                            font-size: 20px;
+                            color: #4A6FFF;
+                            border-bottom: 1px solid #eee;
+                            padding-bottom: 5px;
+                            margin-bottom: 15px;
+                        }
+                        .summary {
+                            background-color: #f5f7ff;
+                            padding: 15px;
+                            border-radius: 10px;
+                            margin-bottom: 20px;
+                        }
+                        .summary-title {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                        .keywords {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            margin-bottom: 20px;
+                        }
+                        .keyword {
+                            background-color: #4A6FFF;
+                            color: white;
+                            padding: 5px 10px;
+                            border-radius: 20px;
+                            font-size: 14px;
+                        }
+                        .sentiment {
+                            display: flex;
+                            align-items: center;
+                            margin-bottom: 20px;
+                        }
+                        .sentiment-bar {
+                            height: 20px;
+                            width: 100%;
+                            background-color: #eee;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            margin: 0 10px;
+                        }
+                        .sentiment-value {
+                            height: 100%;
+                            width: 70%;
+                            background-color: #4CAF50;
+                            border-radius: 10px;
+                        }
+                        .chart {
+                            background-color: #f9f9f9;
+                            padding: 15px;
+                            border-radius: 10px;
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .chart-title {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                        .chart-placeholder {
+                            color: #999;
+                            font-style: italic;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="title">内容分析报告</div>
+                        <div class="subtitle">分析类型：${contentType}</div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">内容摘要</div>
+                        <div class="summary">
+                            <div class="summary-title">主要内容</div>
+                            <p>本文主要探讨了人工智能技术的发展及其在各个领域的应用前景。文章分析了当前AI技术的现状、面临的挑战以及未来的发展方向。同时，也对AI技术可能带来的社会影响和伦理问题进行了深入讨论。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">关键词分析</div>
+                        <div class="keywords">
+                            <span class="keyword">人工智能</span>
+                            <span class="keyword">机器学习</span>
+                            <span class="keyword">深度学习</span>
+                            <span class="keyword">技术创新</span>
+                            <span class="keyword">伦理问题</span>
+                            <span class="keyword">社会影响</span>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">情感分析</div>
+                        <div class="sentiment">
+                            负面
+                            <div class="sentiment-bar">
+                                <div class="sentiment-value"></div>
+                            </div>
+                            正面
+                        </div>
+                        <p>总体情感倾向：中性偏正面，内容客观分析为主，对AI技术的发展持谨慎乐观态度。</p>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">主题分布</div>
+                        <div class="chart">
+                            <div class="chart-title">内容主题占比</div>
+                            <div class="chart-placeholder">[此处为主题分布饼图]</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">阅读难度</div>
+                        <p>阅读难度评级：中等</p>
+                        <p>适合受众：对人工智能有基本了解的人群</p>
+                        <p>预计阅读时间：15分钟</p>
+                    </div>
+                </body>
+                </html>
+                `;
+                
+                const iframe = document.getElementById('analysis-preview');
+                iframe.srcdoc = analysisHTML;
+                
+                // Store for later use
+                window.analysisHTML = analysisHTML;
+                window.analysisFileName = `content_analysis_report.html`;
+            }, 2000);
+        });
+        
+        // Handle confirmation and modification buttons
+        document.getElementById('resume-confirm').addEventListener('click', function() {
+            alert('您的简历已保存到github，访问链接：https://yl0822.github.io/websites/' + window.resumeFileName);
+            document.getElementById('resume-modal').style.display = 'none';
+        });
+        
+        document.getElementById('resume-modify').addEventListener('click', function() {
+            document.getElementById('resume-result').style.display = 'none';
+            document.getElementById('resume-form').style.display = 'block';
+        });
+        
+        document.getElementById('travel-confirm').addEventListener('click', function() {
+            alert('您的旅游攻略已保存到github，访问链接：https://yl0822.github.io/websites/' + window.travelFileName);
+            document.getElementById('travel-modal').style.display = 'none';
+        });
+        
+        document.getElementById('travel-modify').addEventListener('click', function() {
+            document.getElementById('travel-result').style.display = 'none';
+            document.getElementById('travel-form').style.display = 'block';
+        });
+        
+        document.getElementById('analysis-confirm').addEventListener('click', function() {
+            alert('您的分析报告已保存到github，访问链接：https://yl0822.github.io/websites/' + window.analysisFileName);
+            document.getElementById('analysis-modal').style.display = 'none';
+        });
+        
+        document.getElementById('analysis-modify').addEventListener('click', function() {
+            document.getElementById('analysis-result').style.display = 'none';
+            document.getElementById('analysis-form').style.display = 'block';
+        });
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                
+                // Reset forms and hide results
+                document.getElementById('resume-result').style.display = 'none';
+                document.getElementById('resume-form').style.display = 'block';
+                document.getElementById('resume-loading').style.display = 'none';
+                
+                document.getElementById('travel-result').style.display = 'none';
+                document.getElementById('travel-form').style.display = 'block';
+                document.getElementById('travel-loading').style.display = 'none';
+                
+                document.getElementById('analysis-result').style.display = 'none';
+                document.getElementById('analysis-form').style.display = 'block';
+                document.getElementById('analysis-loading').style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
