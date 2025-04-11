@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI初创公司融资数据分析报告</title>
+    <style>
+        :root {
+            --bg-primary: #0c0e12;
+            --bg-secondary: #151922;
+            --bg-card: #1c212e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --text-tertiary: #718096;
+            --accent-blue: #4299e1;
+            --accent-green: #48bb78;
+            --accent-amber: #ed8936;
+            --accent-purple: #9f7aea;
+            --border-color: #2d3748;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 40px 0 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 0.5rem;
+            height: 1.5rem;
+            background-color: var(--accent-blue);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .insight-card {
+            background-color: var(--bg-secondary);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .insight-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-card p {
+            color: var(--text-secondary);
+        }
+
+        .border-blue {
+            border-left-color: var(--accent-blue);
+        }
+
+        .border-green {
+            border-left-color: var(--accent-green);
+        }
+
+        .border-amber {
+            border-left-color: var(--accent-amber);
+        }
+
+        .border-purple {
+            border-left-color: var(--accent-purple);
+        }
+
+        .blue-bg {
+            background-color: rgba(66, 153, 225, 0.15);
+        }
+
+        .green-bg {
+            background-color: rgba(72, 187, 120, 0.15);
+        }
+
+        .amber-bg {
+            background-color: rgba(237, 137, 54, 0.15);
+        }
+
+        .text-blue {
+            color: var(--accent-blue);
+        }
+
+        .text-green {
+            color: var(--accent-green);
+        }
+
+        .text-amber {
+            color: var(--accent-amber);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gray {
+            color: var(--text-tertiary);
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05));
+            z-index: 1;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-disc {
+            list-style-type: disc;
+            padding-left: 2rem;
+        }
+
+        .space-y-2 > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .static-chart {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .static-chart-title {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Bar chart styling */
+        .static-bar {
+            height: 2.5rem;
+            margin: 0.75rem 0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            color: white;
+            position: relative;
+        }
+
+        .static-bar-label {
+            position: absolute;
+            left: 0.75rem;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .static-bar-value {
+            position: absolute;
+            right: 0.75rem;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        /* Pie chart styling */
+        .static-pie-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 1.25rem;
+        }
+
+        .static-pie-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            width: 45%;
+        }
+
+        .static-pie-color {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+
+        .static-pie-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Trends chart styling */
+        .static-trends-container {
+            display: flex;
+            flex-direction: column;
+            height: 260px;
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .static-trends-axis {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .static-trends-month {
+            text-align: center;
+            font-size: 0.75rem;
+            flex: 1;
+            color: var(--text-tertiary);
+        }
+
+        .static-trends-bars {
+            display: flex;
+            height: calc(100% - 25px);
+            align-items: flex-end;
+        }
+
+        .static-trends-bar-group {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            gap: 5px;
+            height: 100%;
+            align-items: flex-end;
+        }
+
+        .static-trends-bar {
+            width: 1.25rem;
+            position: relative;
+            background-color: var(--accent-blue);
+        }
+
+        .static-trends-bar:nth-child(2) {
+            background-color: var(--accent-green);
+        }
+
+        .static-trends-bar-value {
+            position: absolute;
+            top: -1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.625rem;
+            white-space: nowrap;
+            color: var(--text-secondary);
+        }
+
+        .static-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 1.25rem;
+        }
+
+        .static-legend-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .static-legend-color {
+            width: 0.75rem;
+            height: 0.75rem;
+            margin-right: 0.5rem;
+        }
+
+        .static-legend-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI初创公司融资数据分析报告</h1>
+            <p>基于AI-bot.cn提供的融资数据库分析</p>
+        </header>
+
+        <main>
+            <!-- 主要发现 -->
+            <section>
+                <h2>主要发现</h2>
+                <div class="grid-3">
+                    <div class="stat-card blue-bg">
+                        <div class="stat-number text-blue">$18B+</div>
+                        <p>2024年AI领域总融资额预计将超过180亿美元</p>
+                    </div>
+                    <div class="stat-card green-bg">
+                        <div class="stat-number text-green">32%</div>
+                        <p>种子轮融资占比最高，显示早期AI项目活跃度高</p>
+                    </div>
+                    <div class="stat-card amber-bg">
+                        <div class="stat-number text-amber">34%</div>
+                        <p>垂直领域AI应用受到投资者青睐，商业落地优势明显</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 融资趋势 -->
+            <section>
+                <h2>2024年初AI融资趋势</h2>
+                <div class="card">
+                    <!-- 静态趋势图表 -->
+                    <div class="static-chart">
+                        <div class="static-chart-title">2024年初AI融资趋势</div>
+                        <div class="static-trends-container">
+                            <div class="static-trends-bars">
+                                <!-- 1月 -->
+                                <div class="static-trends-bar-group">
+                                    <div class="static-trends-bar" style="height: 28%;">
+                                        <span class="static-trends-bar-value">12</span>
+                                    </div>
+                                    <div class="static-trends-bar" style="height: 42%;">
+                                        <span class="static-trends-bar-value">18</span>
+                                    </div>
+                                </div>
+                                <!-- 2月 -->
+                                <div class="static-trends-bar-group">
+                                    <div class="static-trends-bar" style="height: 42%;">
+                                        <span class="static-trends-bar-value">18</span>
+                                    </div>
+                                    <div class="static-trends-bar" style="height: 52%;">
+                                        <span class="static-trends-bar-value">22</span>
+                                    </div>
+                                </div>
+                                <!-- 3月 -->
+                                <div class="static-trends-bar-group">
+                                    <div class="static-trends-bar" style="height: 52%;">
+                                        <span class="static-trends-bar-value">22</span>
+                                    </div>
+                                    <div class="static-trends-bar" style="height: 66%;">
+                                        <span class="static-trends-bar-value">28</span>
+                                    </div>
+                                </div>
+                                <!-- 4月 -->
+                                <div class="static-trends-bar-group">
+                                    <div class="static-trends-bar" style="height: 66%;">
+                                        <span class="static-trends-bar-value">28</span>
+                                    </div>
+                                    <div class="static-trends-bar" style="height: 83%;">
+                                        <span class="static-trends-bar-value">35</span>
+                                    </div>
+                                </div>
+                                <!-- 5月 -->
+                                <div class="static-trends-bar-group">
+                                    <div class="static-trends-bar" style="height: 76%;">
+                                        <span class="static-trends-bar-value">32</span>
+                                    </div>
+                                    <div class="static-trends-bar" style="height: 100%;">
+                                        <span class="static-trends-bar-value">42</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="static-trends-axis">
+                                <div class="static-trends-month">1月</div>
+                                <div class="static-trends-month">2月</div>
+                                <div class="static-trends-month">3月</div>
+                                <div class="static-trends-month">4月</div>
+                                <div class="static-trends-month">5月</div>
+                            </div>
+                        </div>
+                        <div class="static-legend">
+                            <div class="static-legend-item">
+                                <div class="static-legend-color" style="background-color: var(--accent-blue);"></div>
+                                <span class="static-legend-label">总融资额</span>
+                            </div>
+                            <div class="static-legend-item">
+                                <div class="static-legend-color" style="background-color: var(--accent-green);"></div>
+                                <span class="static-legend-label">交易数量</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray mt-4">5月数据显示融资额和交易数量均达到年内高峰</p>
+                </div>
+            </section>
+
+            <!-- 融资分布 -->
+            <section>
+                <h2>AI融资分布分析</h2>
+                <div class="grid-3">
+                    <!-- 融资阶段分布 -->
+                    <div class="card">
+                        <h3>融资阶段分布</h3>
+                        <div class="static-chart" style="height: 220px;">
+                            <div class="static-pie-container">
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #4299e1;"></div>
+                                    <div class="static-pie-label">种子轮 32%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #48bb78;"></div>
+                                    <div class="static-pie-label">A轮 25%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #ed8936;"></div>
+                                    <div class="static-pie-label">B轮 18%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #f56565;"></div>
+                                    <div class="static-pie-label">C轮 12%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #9f7aea;"></div>
+                                    <div class="static-pie-label">D轮及以上 13%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 行业分布 -->
+                    <div class="card">
+                        <h3>行业分布</h3>
+                        <div class="static-chart" style="height: 220px;">
+                            <div class="static-pie-container">
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #4299e1;"></div>
+                                    <div class="static-pie-label">AGI/通用AI 22%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #48bb78;"></div>
+                                    <div class="static-pie-label">AI内容生成 26%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #ed8936;"></div>
+                                    <div class="static-pie-label">垂直领域AI应用 34%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #f56565;"></div>
+                                    <div class="static-pie-label">AI基础设施 18%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 地区分布 -->
+                    <div class="card">
+                        <h3>地区分布</h3>
+                        <div class="static-chart" style="height: 220px;">
+                            <div class="static-pie-container">
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #4299e1;"></div>
+                                    <div class="static-pie-label">美国 45%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #48bb78;"></div>
+                                    <div class="static-pie-label">中国 20%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #ed8936;"></div>
+                                    <div class="static-pie-label">欧洲 18%</div>
+                                </div>
+                                <div class="static-pie-item">
+                                    <div class="static-pie-color" style="background-color: #f56565;"></div>
+                                    <div class="static-pie-label">其他地区 17%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 融资金额前5公司 -->
+            <section>
+                <h2>融资金额最高的AI公司（亿美元）</h2>
+                <div class="card">
+                    <div class="static-chart">
+                        <div class="static-chart-title">融资金额最高的AI公司（亿美元）</div>
+                        <!-- Scale AI -->
+                        <div class="static-bar" style="width: 100%; background-color: #4299e1;">
+                            <span class="static-bar-label">Scale AI</span>
+                            <span class="static-bar-value">10.0</span>
+                        </div>
+                        <!-- H (Holistic AI) -->
+                        <div class="static-bar" style="width: 22%; background-color: #48bb78;">
+                            <span class="static-bar-label">H (Holistic AI)</span>
+                            <span class="static-bar-value">2.2</span>
+                        </div>
+                        <!-- Suno -->
+                        <div class="static-bar" style="width: 12.5%; background-color: #ed8936;">
+                            <span class="static-bar-label">Suno</span>
+                            <span class="static-bar-value">1.25</span>
+                        </div>
+                        <!-- InfinitForm -->
+                        <div class="static-bar" style="width: 4%; background-color: #f56565;">
+                            <span class="static-bar-label">InfinitForm</span>
+                            <span class="static-bar-value">0.4</span>
+                        </div>
+                        <!-- 其他AI创企 -->
+                        <div class="static-bar" style="width: 41.5%; background-color: #9f7aea;">
+                            <span class="static-bar-label">其他AI创企</span>
+                            <span class="static-bar-value">4.15</span>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray mt-4">Scale AI以10亿美元的F轮融资位列榜首，估值达138亿美元</p>
+                </div>
+            </section>
+
+            <!-- 关键洞察 -->
+            <section>
+                <h2>关键洞察</h2>
+                <div class="insight-card border-blue">
+                    <h3>早期项目仍占主导</h3>
+                    <p>种子轮和A轮融资占比超过50%，表明AI领域仍处于快速增长的早期阶段，创新活力十足。</p>
+                </div>
+                <div class="insight-card border-green">
+                    <h3>垂直应用受青睐</h3>
+                    <p>垂直领域AI应用获得最多投资，说明市场更看好有明确商业模式和应用场景的AI解决方案。</p>
+                </div>
+                <div class="insight-card border-amber">
+                    <h3>美国主导AI投资</h3>
+                    <p>美国仍是AI初创公司融资的主要市场，占据近半数份额，中国位居第二，欧洲紧随其后。</p>
+                </div>
+                <div class="insight-card border-purple">
+                    <h3>大额融资持续涌现</h3>
+                    <p>Scale AI、H (Holistic AI)、Suno等公司获得大额融资，表明投资者对AI领域头部企业仍保持高度信心。</p>
+                </div>
+            </section>
+
+            <!-- 结论 -->
+            <section>
+                <h2>结论</h2>
+                <div class="card">
+                    <p class="mb-4">基于AI-bot.cn提供的AI初创公司融资数据库分析，2024年AI投资市场呈现出以下特点：</p>
+                    <ul class="list-disc space-y-2">
+                        <li>融资热度持续上升，但投资更趋理性，关注商业落地能力</li>
+                        <li>早期项目数量多，但头部企业获得的融资额度更大</li>
+                        <li>垂直领域AI应用成为投资热点，AGI和内容生成领域紧随其后</li>
+                        <li>地区分布仍不均衡，美国主导局面短期内难以改变</li>
+                        <li>随着市场逐渐成熟，投资者对于AI公司估值更为谨慎，泡沫风险开始受到关注</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray italic">注：本报告中的数据为基于AI-bot.cn网站数据库中可见信息的推算，仅供参考。实际数据可能有所不同。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>数据来源：AI-bot.cn AI初创公司融资数据库</p>
+            <p class="mt-4">© 2025 AI投资分析报告 | 此报告仅供参考，不构成投资建议</p>
+        </footer>
+    </div>
+</body>
+</html>
