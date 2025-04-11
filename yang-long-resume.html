@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨龙 - 个人简历</title>
+    <style>
+        :root {
+            /* 颜色系统 */
+            --color-background: #0f0f0f;
+            --color-surface: #121212;
+            --color-surface-light: #1a1a1a;
+            --color-primary: #ff5e14;
+            --color-primary-light: #ff7a3d;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #a0a0a0;
+            --color-text-tertiary: #707070;
+            --color-border: #2a2a2a;
+            
+            /* 排版 */
+            --font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-size-xs: 12px;
+            --font-size-sm: 14px;
+            --font-size-md: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 24px;
+            --font-size-xxl: 32px;
+            
+            /* 间距 */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* 边框 */
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --border-width: 1px;
+            
+            /* 阴影 */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+            
+            /* 过渡 */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: var(--spacing-lg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            background-color: var(--color-surface);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .name {
+            font-size: var(--font-size-xxl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .basic-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .basic-info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+        }
+
+        .section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-sm);
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .education-item, .work-item {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--color-surface-light);
+            border-radius: var(--border-radius-md);
+        }
+
+        .education-header, .work-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .institution, .company {
+            font-weight: 600;
+            font-size: var(--font-size-md);
+        }
+
+        .degree, .position {
+            color: var(--color-text-secondary);
+        }
+
+        .duration {
+            color: var(--color-text-tertiary);
+            font-size: var(--font-size-sm);
+        }
+
+        .project {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--color-surface-light);
+            border-radius: var(--border-radius-md);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .project-title {
+            font-weight: 600;
+            font-size: var(--font-size-md);
+        }
+
+        .project-duration {
+            color: var(--color-text-tertiary);
+            font-size: var(--font-size-sm);
+        }
+
+        .project-role {
+            color: var(--color-primary-light);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .project-description {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .skill-tag {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        .self-description {
+            list-style-position: inside;
+            margin-left: var(--spacing-sm);
+        }
+
+        .self-description li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .work-description {
+            list-style-position: inside;
+            margin-left: var(--spacing-sm);
+        }
+
+        .work-description li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .header {
+                flex-direction: column;
+            }
+
+            .basic-info, .contact-info {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+
+            .education-header, .work-header, .project-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">杨龙</h1>
+            <div class="basic-info">
+                <div class="basic-info-item">32 岁</div>
+                <div class="basic-info-item">男</div>
+                <div class="basic-info-item">本科</div>
+                <div class="basic-info-item">9 年经验</div>
+            </div>
+            <div class="contact-info">
+                <div class="basic-info-item">18767120423</div>
+                <div class="basic-info-item">839880341@qq.com</div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">教育经历</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="institution">浙江工业大学</div>
+                    <div class="duration">2010.9 – 2014.6</div>
+                </div>
+                <div class="degree">本科 | 英语 CET-6</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">自我描述</h2>
+            <ul class="self-description">
+                <li>具备丰富的大厂经验，能很好的和多团队沟通协调的能力。</li>
+                <li>具备实际MRG经验，能识别团队成员的特性安排工作计划和发展规划，有较好的沟通管理能力。</li>
+                <li>具备多年的资深的一线开发经验，不管是新业务的框架设计还是已有系统的优化重构都有一定经验。</li>
+                <li>具备良好的编码习惯，敏锐的线上风险意识，完整的稳定性保障等相关经验。</li>
+                <li>具备AI相关（LLM）产品的落地经验，包括架构设计、Prompt调优、合规等方面。</li>
+                <li>能很好承担工作压力，针对负责内容主动且有担当。</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">工作经历</h2>
+            
+            <div class="work-item">
+                <div class="work-header">
+                    <div class="company">酷家乐 - 房产业务线&美间业务线</div>
+                    <div class="duration">2020.7 – 至今（三年半）</div>
+                </div>
+                <div class="position">资深开发 | 美间业务线</div>
+                <p><strong>工作职责：</strong>作为TL参与搭建酷家乐房产DIP平台的设计与开发，并进行开发团队管理等工作。</p>
+                <p><strong>工作内容：</strong></p>
+                <ul class="work-description">
+                    <li>负责房产业务线需求拆分和开发设计评审，CR评审等，关注系统稳定性和性能优化等工作。</li>
+                    <li>负责美间数据生态模块以及导入导出能力的建设。</li>
+                    <li>负责美间AIGC相关产品落地，包括stable diffusion、llm等能力对接，Agent形态产品的技术实现。</li>
+                </ul>
+                <p><strong>使用技术：</strong>java相关技术栈，AI相关能力，sd、llm、rag、langchain等。</p>
+            </div>
+            
+            <div class="work-item">
+                <div class="work-header">
+                    <div class="company">蚂蚁金服 - 支付宝事业群</div>
+                    <div class="duration">2019.3 - 2020.7（一年半）</div>
+                </div>
+                <div class="position">高级 java | 业务风险技术部</div>
+                <p><strong>工作职责：</strong>作为核心开发搭建风险平台系统，快速对接端上内容风险并定性处罚，保障支付宝端上生态安全。</p>
+                <p><strong>工作内容：</strong></p>
+                <ul class="work-description">
+                    <li>参与部门核心 B 端产品生态风险平台相关的迭代和项目需求的分析、设计和落地。</li>
+                    <li>负责生态风险平台的稳定性保障相关工作。</li>
+                    <li>负责 C 端产品流量海关平台（涉及交易链路的高并发系统 1W+QPS）的设计和性能优化工作。</li>
+                </ul>
+                <p><strong>使用技术：</strong>java、spring、阿里各类自研中间件、高并发、分布式等场景。</p>
+            </div>
+            
+            <div class="work-item">
+                <div class="work-header">
+                    <div class="company">杭州网易云音乐科技有限公司</div>
+                    <div class="duration">2015.8 - 2019.3（三年半）</div>
+                </div>
+                <div class="position">高级 java | 音乐人技术部</div>
+                <p><strong>工作职责：</strong>作为音乐人系统的早期/核心开发搭建音乐人后端阵地，助力云音乐在音乐人行业形成良好口碑。</p>
+                <p><strong>工作内容：</strong></p>
+                <ul class="work-description">
+                    <li>负责音乐人账户、作品管理、版权管理等系统的分析、设计和编码落地。</li>
+                    <li>参与系统业务架构、系统优化、稳定性保证等工作。</li>
+                    <li>负责团队人员培训、代码 CR 等工作。</li>
+                </ul>
+                <p><strong>使用技术：</strong>java、spring、mysql、redis、kafka、dubbo</p>
+            </div>
+            
+            <div class="work-item">
+                <div class="work-header">
+                    <div class="company">智诺科技</div>
+                    <div class="duration">2014.7 - 2015.8（一年）</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">项目经历</h2>
+            
+            <div class="project">
+                <div class="project-header">
+                    <div class="project-title">美间AI生态能力建设</div>
+                    <div class="project-duration">2023/1 – 至今</div>
+                </div>
+                <div class="project-role">职责描述：作为owner参与搭建酷家乐美间AI产品的设计与开发。</div>
+                <div class="project-description">
+                    <p><strong>项目简介：</strong>从 0 到 1 搭建美间AI平台，让美间设计基于AI提供更多产品形态，提升产品效率。</p>
+                    <p><strong>项目介绍：</strong>美间是酷家乐在2D设计和营销场景的核心产品，2023年以来随着SD和ChatGPT等llm模型的爆火，和美间原业务非常契合，所以整个业务线开始转向AI方向为核心。我的主要工作是帮助美间技术团队优先投入做AI方面能力的调研和集成，完成了sd和llm等能力的封装，除了技术工作之外，还统领AI域相关的其他工作，比如出图效果调试，PromptEngineering，AI合规，AI能力科普和周会组织等方面的工作。完成了AI灵感图库、AI软装搭配、AI海报生成的产品的上线，此外在运营效率等离线方面推动了AI扩展素材库的项目，帮助运营人员由原来的传统爬图，走向了AI生成素材的高效方式。近期开始进行Agent架构的调研和落地，包括LangChain、RAG等技术的学习和实践，帮助测试团队构建了私有知识库的问答系统。后续也将推进该套架构在线上产品美间设计助手的落地。</p>
+                </div>
+            </div>
+            
+            <div class="project">
+                <div class="project-header">
+                    <div class="project-title">房产DIP平台</div>
+                    <div class="project-duration">2021/1 – 至今</div>
+                </div>
+                <div class="project-role">职责描述：作为TO参与搭建酷家乐房产DIP平台的设计与开发，并进行开发团队管理等工作。</div>
+                <div class="project-description">
+                    <p><strong>项目简介：</strong>从 0 到 1 搭建房产DIP平台，让酷家乐的在线设计和渲染能力在房地产赛道完成落地。</p>
+                    <p><strong>项目介绍：</strong>房产DIP平台是酷家乐基于多年在线设计技术上沉淀的能力和工具，为房地产行业提供的SaaS平台解决方案。我在其中作为TO参与了整个系统的成长周期，首先我基于业务特点进行了微服务架构设计，决策了一些关键技术的引入（redis、rocketmq），以及中台能力的对接（数仓、稳定性）。在技术工作之外，我还承担开发团队管理工作，建立了大部分团队日常机制。该平台完成了多次关键节点的发布上线，承接了金茂、中海、东航、优你家等多个房企的项目落地。</p>
+                </div>
+            </div>
+            
+            <div class="project">
+                <div class="project-header">
+                    <div class="project-title">支付宝端生态风险处罚中台</div>
+                    <div class="project-duration">2019/8 – 2020/7</div>
+                </div>
+                <div class="project-role">职责描述：担任核心开发人员。</div>
+                <div class="project-description">
+                    <p><strong>项目简介：</strong>快速对接端上内容风险并定性处罚，保障支付宝端上生态安全。</p>
+                    <p><strong>项目介绍：</strong>负责中台需求和项目的领域模型设计和开发落地。中台对接小程序、生活号等支付宝端上内容分发平台，通过各类安全检测通道，将端上内容存在底线安全、业务安全等数据流入进行管理、定性，并对其主体进行整改、处罚等。整个系统处于对整个端上业务的风险定性和处罚的横向收拢，并通过阵地和通知等触达能力，帮助商家形成产出干净内容的心智。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">专业技能</h2>
+            <div class="skills-list">
+                <div class="skill-tag">Java</div>
+                <div class="skill-tag">Spring</div>
+                <div class="skill-tag">MySQL</div>
+                <div class="skill-tag">Redis</div>
+                <div class="skill-tag">Kafka</div>
+                <div class="skill-tag">Dubbo</div>
+                <div class="skill-tag">RocketMQ</div>
+                <div class="skill-tag">高并发</div>
+                <div class="skill-tag">分布式系统</div>
+                <div class="skill-tag">微服务架构</div>
+                <div class="skill-tag">AI</div>
+                <div class="skill-tag">LLM</div>
+                <div class="skill-tag">Stable Diffusion</div>
+                <div class="skill-tag">RAG</div>
+                <div class="skill-tag">LangChain</div>
+                <div class="skill-tag">团队管理</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
