@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胡震宇 - 体验设计专家</title>
+    <style>
+        :root {
+            --primary-color: #0066FF;
+            --secondary-color: #111827;
+            --text-color: #4B5563;
+            --light-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+            --highlight: #DBEAFE;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.75rem;
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 24px;
+            background-color: var(--primary-color);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--primary-color);
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .experience-item:last-child, .education-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .position {
+            font-weight: 600;
+            color: var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .duration {
+            color: var(--text-color);
+            font-weight: normal;
+            white-space: nowrap;
+        }
+        
+        .description {
+            margin-top: 0.75rem;
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--highlight);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .achievements {
+            background-color: var(--light-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .achievements h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-color);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .position {
+                flex-direction: column;
+            }
+            
+            .duration {
+                margin-top: 0.25rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .endorsement {
+            position: relative;
+            padding-left: 1.5rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        
+        .endorsement::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://via.placeholder.com/120" alt="胡震宇照片" class="profile-image" />
+            <h1>胡震宇</h1>
+            <div class="subtitle">体验设计专家 | 互联网金融</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i>📍</i>
+                    <span>浙江杭州</span>
+                </div>
+                <div class="contact-item">
+                    <i>📧</i>
+                    <span>hzy20052008@qq.com</span>
+                </div>
+                <div class="contact-item">
+                    <i>💬</i>
+                    <span>微信: XE_datou</span>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2>专业概述</h2>
+            <p>资深体验设计专业人士，拥有丰富的互联网产品设计经验，专注于B端和C端产品的交互设计。在蚂蚁金服、网易云音乐等知名公司积累了深厚的设计经验，擅长商家数字化解决方案、音乐平台体验优化、内容创作者服务等领域的设计工作。</p>
+        </section>
+        
+        <section class="section">
+            <h2>工作经历</h2>
+            <div class="experience-item">
+                <div class="position">
+                    <span>体验设计专家</span>
+                    <span class="duration">2020.07 - 至今 (4年9个月)</span>
+                </div>
+                <div class="company">蚂蚁金服</div>
+                <div class="description">
+                    <p>负责蚂蚁金服商家数字化业务的体验设计工作。</p>
+                    <ul>
+                        <li>主导支付宝数字支付核心业务B端（商家管理后台、经营工具）及C端（支付玩法、红包码等）产品的交互设计</li>
+                        <li>优化产品易用性和商业价值，提升用户体验</li>
+                        <li>通过用户研究和数据分析挖掘需求，推动体验升级与核心功能迭代</li>
+                        <li>参与产品从概念到落地的全周期设计，协同产研团队高效落地方案</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="position">
+                    <span>交互设计师（UE/UX）</span>
+                    <span class="duration">2016.12 - 2020.06 (3年6个月)</span>
+                </div>
+                <div class="company">网易云音乐</div>
+                <div class="description">
+                    <p>负责网易云音乐B端和C端产品的交互设计工作。</p>
+                    <ul>
+                        <li>设计B端音乐人、创作者中心平台，版权管理体系，云豆特权体系</li>
+                        <li>负责C端平台，我的音乐改版，平台听歌基础服务优化，年度听歌报告，数字专辑等设计工作</li>
+                    </ul>
+                    <div class="achievements">
+                        <h4>成就与荣誉</h4>
+                        <ul>
+                            <li>获得云音乐年度之星荣誉</li>
+                            <li>获得云音乐季度之星荣誉</li>
+                            <li>获得年度创新奖荣誉</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="position">
+                    <span>UX Designer Intern</span>
+                    <span class="duration">2016.08 - 2016.10 (2个月)</span>
+                </div>
+                <div class="company">微软</div>
+                <div class="description">
+                    <p>负责微软 Azure镜像市场的交互与视觉设计。</p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="position">
+                    <span>交互设计师实习</span>
+                    <span class="duration">2016.03 - 2016.07 (4个月)</span>
+                </div>
+                <div class="company">网易游戏</div>
+                <div class="description">
+                    <p>负责了popo服务号开放平台的交互设计。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>教育背景</h2>
+            <div class="education-item">
+                <div class="position">
+                    <span>材料工程，硕士</span>
+                    <span class="duration">2011 - 2017</span>
+                </div>
+                <div class="company">上海大学</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>专业技能</h2>
+            <div class="skills">
+                <div class="skill-tag">交互设计</div>
+                <div class="skill-tag">用户体验</div>
+                <div class="skill-tag">设计系统</div>
+                <div class="skill-tag">B/C端产品设计</div>
+                <div class="skill-tag">用户研究</div>
+                <div class="skill-tag">视觉设计</div>
+                <div class="skill-tag">Sketch</div>
+                <div class="skill-tag">信息架构</div>
+                <div class="skill-tag">任务流程设计</div>
+                <div class="skill-tag">团队协作</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>同事评价</h2>
+            <div class="endorsement">
+                <p>"大头是一个非常负责且非常有耐心的guy，拥有着这个年纪不应该有的稳重跟逻辑；是一个非常优秀的交互设计师。"</p>
+                <p style="text-align: right; margin-top: 0.5rem;">— 常一勤，圆通信息科技有限公司产品规划专家</p>
+            </div>
+        </section>
+        
+        <div class="footer">
+            <p>© 2025 胡震宇个人简历 | 基于脉脉个人资料制作</p>
+        </div>
+    </div>
+</body>
+</html>
