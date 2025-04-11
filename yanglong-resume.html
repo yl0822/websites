@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨龙 - 个人简历</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary-color: #475569;
+            --background-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .profile-title {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .profile-contact {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 20px;
+            background-color: var(--primary-color);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .education-item, .work-item, .project-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .education-item:last-child, .work-item:last-child, .project-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .item-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .item-subtitle {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .item-content {
+            margin-top: 15px;
+        }
+        
+        .responsibilities {
+            list-style-type: none;
+            margin-top: 10px;
+        }
+        
+        .responsibilities li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .responsibilities li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            list-style-type: none;
+        }
+        
+        .skills-list li {
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .skills-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .item-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1 class="profile-name">杨龙</h1>
+                <p class="profile-title">32 岁 | 男 | 本科 | 9 年经验</p>
+                <div class="profile-contact">
+                    <span>18767120423</span>
+                    <span>839880341@qq.com</span>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">自我描述</h2>
+            <ul class="skills-list">
+                <li>具备丰富的大厂经验，能很好的和多团队沟通协调的能力</li><li>具备实际MRG经验，能识别团队成员的特性安排工作计划和发展规划，有较好的沟通管理能力</li><li>具备多年的资深的一线开发经验，不管是新业务的框架设计还是已有系统的优化重构都有一定经验</li><li>具备良好的编码习惯，敏锐的线上风险意识，完整的稳定性保障等相关经验</li><li>具备AI相关（LLM）产品的落地经验，包括架构设计、Prompt调优、合规等方面</li><li>能很好承担工作压力，针对负责内容主动且有担当</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">教育经历</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">浙江工业大学</div>
+                    <div class="item-period">2010.9 – 2014.6</div>
+                </div>
+                <div class="item-subtitle">本科 | 英语 CET-6</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">工作经历</h2>
+            
+                <div class="work-item">
+                    <div class="item-header">
+                        <div class="item-title">酷家乐 - 房产业务线&美间业务线</div>
+                        <div class="item-period">2020.7 – 至今（三年半）</div>
+                    </div>
+                    <div class="item-subtitle">资深开发 | 美间业务线</div>
+                    
+                        <div class="item-content">
+                            <ul class="responsibilities">
+                                <li>作为TL参与搭建酷家乐房产DIP平台的设计与开发，并进行开发团队管理等工作</li><li>负责房产业务线需求拆分和开发设计评审，CR评审等，关注系统稳定性和性能优化等工作</li><li>负责美间数据生态模块以及导入导出能力的建设</li><li>负责美间AIGC相关产品落地，包括stable diffusion、llm等能力对接，Agent形态产品的技术实现</li>
+                            </ul>
+                            
+                                <div style="margin-top: 15px;">
+                                    <strong>使用技术：</strong>java相关技术栈，AI相关能力，sd、llm、rag、langchain等
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+            
+                <div class="work-item">
+                    <div class="item-header">
+                        <div class="item-title">蚂蚁金服 - 支付宝事业群</div>
+                        <div class="item-period">2019.3 – 2020.7（一年半）</div>
+                    </div>
+                    <div class="item-subtitle">高级 java | 业务风险技术部</div>
+                    
+                        <div class="item-content">
+                            <ul class="responsibilities">
+                                <li>作为核心开发搭建风险平台系统，快速对接端上内容风险并定性处罚，保障支付宝端上生态安全</li><li>参与部门核心 B 端产品生态风险平台相关的选代和项目需求的分析、设计和落地</li><li>负责生态风险平台的稳定性保障相关工作</li><li>负责 C 端产品流量海关平台（涉及交易链路的高并发系统 1W+QPS）的设计和性能优化工作</li>
+                            </ul>
+                            
+                                <div style="margin-top: 15px;">
+                                    <strong>使用技术：</strong>java、spring、阿里各类自研中间件、高并发、分布式等场景
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+            
+                <div class="work-item">
+                    <div class="item-header">
+                        <div class="item-title">网易云音乐 - 杭州网易云音乐科技有限公司</div>
+                        <div class="item-period">2015.8 – 2019.3（三年半）</div>
+                    </div>
+                    <div class="item-subtitle">高级 java | 音乐人技术部</div>
+                    
+                        <div class="item-content">
+                            <ul class="responsibilities">
+                                <li>作为音乐人系统的早期/核心开发搭建音乐人后端阵地，助力云音乐在音乐人行业形成良好口碑</li><li>负责音乐人账户、作品管理、版权管理等系统的分析、设计和编码落地</li><li>参与系统业务架构、系统优化、稳定性保证等工作</li><li>负责团队人员培训、代码 CR 等工作</li>
+                            </ul>
+                            
+                                <div style="margin-top: 15px;">
+                                    <strong>使用技术：</strong>java、spring、mysql、redis、kafka、dubbo
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+            
+                <div class="work-item">
+                    <div class="item-header">
+                        <div class="item-title">智诺科技</div>
+                        <div class="item-period">2014.7 – 2015.8（一年）</div>
+                    </div>
+                    
+                </div>
+            
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">项目经历</h2>
+            
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">美间AI生态能力建设</div>
+                        <div class="item-period">2023/1 – 至今</div>
+                    </div>
+                    <div class="item-content">
+                        <p><strong>项目简介：</strong>从 0 到 1 搭建美间AI平台，让美间设计基于AI提供更多产品形态，提升产品效率</p>
+                        <p><strong>职责描述：</strong>作为owner参与搭建酷家乐美间AI产品的设计与开发</p>
+                        <p><strong>项目介绍：</strong>美间是酷家乐在2D设计和营销场景的核心产品，2023年以来随着SD和ChatGPT等llm模型的爆火，和美间原业务非常契合，所以整个业务线开始转向AI方向为核心，我的主要工作是帮助美间技术团队优先投入做AI方面能力的调研和集成，完成了sd和llm等能力的封装，除了技术工作之外，还统领AI域相关的其他工作，比如出图效果调试，PromptEngineering，AI合规，AI能力科普和周会组织等方面的工作。完成了AI灵感图库、AI软装搭配、AI海报生成的产品的上线，此外在运营效率等离线方面推动了AI扩展素材库的项目，帮助运营人员由原来的传统爬图，走向了AI生成素材的高效方式。近期开始进行Agent架构的调研和落地，包括LangChain、RAG等技术的学习和实践，帮助测试团队构建了私有知识库的问答系统。后续也将推进该套架构在线上产品美间设计助手的落地。</p>
+                    </div>
+                </div>
+            
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">房产DIP平台</div>
+                        <div class="item-period">2021/1 – 至今</div>
+                    </div>
+                    <div class="item-content">
+                        <p><strong>项目简介：</strong>从 0 到 1 搭建房产DIP平台，让酷家乐的在线设计和渲染能力在房地产赛道完成落地</p>
+                        <p><strong>职责描述：</strong>作为TO参与搭建酷家乐房产DIP平台的设计与开发，并进行开发团队管理等工作</p>
+                        <p><strong>项目介绍：</strong>房产DIP平台是酷家乐基于多年在线设计技术上沉淀的能力和工具，为房地产行业提供的SaaS平台解决方案。我在其中作为TO参与了整个系统的成长周期，首先我基于业务特点进行了微服务架构设计，决策了一些关键技术的引入（redis、rocketmq），以及中台能力的对接（数仓、稳定性）。在技术工作之外，我还承担开发团队管理工作，建立了大部分团队日常机制。该平台完成了多次关键节点的发布上线，承接了金茂、中海、东航、优你家等多个房企的项目落地。</p>
+                    </div>
+                </div>
+            
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">支付宝端生态风险处罚中台</div>
+                        <div class="item-period">2019/8 – 2020/7</div>
+                    </div>
+                    <div class="item-content">
+                        <p><strong>项目简介：</strong>快速对接端上内容风险并定性处罚，保障支付宝端上生态安全</p>
+                        <p><strong>职责描述：</strong>担任核心开发人员</p>
+                        <p><strong>项目介绍：</strong>负责中台需求和项目的领域模型设计和开发落地。中台对接小程序、生活号等支付宝端上内容分发平台，通过各类安全检测通道，将端上内容存在底线安全、业务安全等数据流入进行管理、定性，并对其主体进行整改、处罚等。整个系统处于对整个端上业务的风险定性和处罚的横向收拢，并通过阵地和通知等触达能力，帮助商家形成产出干净内容的心智。</p>
+                    </div>
+                </div>
+            
+        </section>
+        
+        <footer class="footer">
+            <p>© 2025 杨龙 - 个人简历</p>
+        </footer>
+    </div>
+</body>
+</html>
